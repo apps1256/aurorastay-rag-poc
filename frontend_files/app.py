@@ -64,3 +64,96 @@ st.write(
     "AI-powered assistant for hotel staff to answer guest "
     "questions using official property and policy documents."
 )
+# ---------------------------------------------------------
+# Staff guidance
+# ---------------------------------------------------------
+
+st.info(
+    "Answers are based on available hotel policy documents. "
+    "Verify the live property profile before confirming "
+    "property-specific fees, availability, or restrictions."
+)
+
+# ---------------------------------------------------------
+# Response selection
+# ---------------------------------------------------------
+
+response_type = st.radio(
+    "Response mode",
+    ["Answer only", "Answer + Relevant Chunks"],
+    horizontal=True
+)
+
+# ---------------------------------------------------------
+# Question input
+# ---------------------------------------------------------
+
+query = st.text_input(
+    "Your question",
+    placeholder="e.g., What is the pet fee at ASH-CHI Loop?"
+)
+
+# ---------------------------------------------------------
+# Submit
+# ---------------------------------------------------------
+
+if st.button("Submit", type="primary"):
+
+    if not query.strip():
+        st.warning("Please enter a question.")
+
+    else:
+        endpoint = (
+            "/v1/answer"
+            if response_type == "Answer only"
+            else "/v1/answer_with_relevant_chunks"
+        )
+
+        payload = {
+            "query": query,
+            "k": k,
+            "temperature": temperature,
+            "max_tokens": max_tokens
+        }
+
+        try:
+            with st.spinner("Searching hotel policies..."):
+                response = requests.post(
+                    f"{BACKEND_URL}{endpoint}",
+                    json=payload,
+                    timeout=180
+                )
+
+            response.raise_for_status()
+            result = response.json()
+
+            st.subheader("Answer")
+            st.write(
+                result.get("answer", "No answer was returned.")
+            )
+
+            if response_type == "Answer + Relevant Chunks":
+                st.subheader("Supporting Policy Information")
+
+                chunks = result.get("relevant_chunks", [])
+
+                if chunks:
+                    for i, chunk in enumerate(chunks, start=1):
+                        with st.expander(f"Retrieved Policy Chunk {i}"):
+                            st.text(chunk)
+                else:
+                    st.warning("No supporting policy chunks returned.")
+
+        except requests.exceptions.Timeout:
+            st.error("The request timed out. Please try again.")
+
+        except requests.exceptions.ConnectionError:
+            st.error(
+                "Unable to connect to the Flask backend. "
+                "Please check that the backend service is running."
+            )
+
+        except requests.exceptions.RequestException as e:
+            st.error(
+                f"The backend request failed: {type(e).__name__}"
+            )
