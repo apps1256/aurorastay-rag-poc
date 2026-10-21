@@ -1,0 +1,36 @@
+# API credentials and secrets
+config.json
+.env
+.env.*
+!.env.example
+*secret*
+*credentials*
+
+# Python temporary files
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Hugging Face model cache
+huggingface/
+.cache/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Local logs
+*.log
+
+# Local evaluation artifacts
+.deepeval/
+
+# Local setup guides and duplicate archives
+GitHub_Account_and_Token_Guide.docx.pdf
+Adding Secrets in GitHub Codespaces.pdf
+Data.zip

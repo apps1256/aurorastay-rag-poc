@@ -1,0 +1,8 @@
+# Treat binary files as binary; prevent line-ending conversion
+*.pdf binary
+*.xlsx binary
+*.faiss binary
+*.pkl binary
+*.zip binary
+*.docx binary
+*.pptx binary

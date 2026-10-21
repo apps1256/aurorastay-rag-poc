@@ -1,0 +1,11 @@
+Test Case,Question,Passed,Faithfulness [GEval],Contextual Recall [GEval],Contextual Precision [GEval],Answer Relevancy [GEval]
+0,"What time can I check in at ASH-CHI Loop, and when do I need to be out?",False,1.0,0.7738405263969967,0.7933766171747328,0.8517708308879183
+1,I have a flexible reservation for next Friday. How late can I cancel without being charged?,True,1.0,0.9968856169465221,0.803742229742932,0.9793105951184111
+2,"I am staying at ASH-MIA Brickell with a dog on an Advance Purchase rate. What will the dog cost, and can I cancel for a refund?",False,0.6840955903339097,0.5371166164964496,0.6805177780469228,0.6089548879861548
+3,How much could AuroraStay charge if a guest smokes or vapes in a room?,True,0.9924141819978758,0.9152207650732069,0.8826711794070674,0.9538983220687683
+4,"I have a service dog at ASH-BOS Harbor. Do I pay the pet fee, and what can the front desk ask me?",False,0.991490095499298,0.6713870098701556,0.8942772077810573,0.9803173796356901
+5,"For ASH-SEA Pike, is breakfast included and what should I budget for parking?",False,0.9707555471568142,0.16548177769598177,0.16425366991843057,0.6882978833539017
+6,"I booked AuroraStay Austin North. Is there a pool, and can I reserve a cabana?",False,0.9581112112370066,0.873063351696062,0.011436852618181248,0.3022102293514532
+7,I checked out yesterday and my card still shows a pending incidental hold. Was I charged twice?,True,1.0,0.9837619963333288,0.8550607365535241,0.9554470464960427
+8,The room next door has been loud since midnight. What is AuroraStay supposed to do?,False,0.8853230096267252,0.00288709069462879,0.21743745075586673,0.21247248285029716
+9,I canceled my flexible booking after the deadline and now see a one-night charge. Can someone still refund it?,False,0.6128593311172895,0.2595186897779994,0.6617672763453117,0.32358516980969404
